@@ -15,11 +15,12 @@ for (int i = 0; i < student.Count; i++)
     Console.WriteLine($"{i}번: {student[i]}");
 }
 
-Console.WriteLine($"김민수 점수: {student["김민수"]}원");
-Console.WriteLine($"이지영 점수: {student["이지영"]}원");
-Console.WriteLine($"홍길동 점수: {student["홍길동"]}원");
+Console.WriteLine($"김민수 점수: {student["김민수"]}점");
+Console.WriteLine($"이지영 점수: {student["이지영"]}점");
+Console.WriteLine($"홍길동 점수: {student["홍길동"]}점");
 
 student["김민수"] = 95;
+Console.WriteLine($"김민수 수정된 점수: {student["김민수"]}점");
 
 class ScoreBoard
 {
@@ -70,7 +71,15 @@ class ScoreBoard
                 }
                 return -1;
             }
-        set { _scores[name] = value; }
+        set {
+                for (int i = 0; i < _scores.Length; i++)
+                {
+                    if (_names[i] == name)
+                    {
+                    _scores[i] = value;
+                    }
+                }
+            }
     }
     public string this[int index]
     {
